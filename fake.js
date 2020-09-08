@@ -1,4 +1,4 @@
-module.exports = [
+const users = [
   { "id": 1, "name": "Robinet Jimpson", "year": 2002 },
   { "id": 2, "name": "Fonzie Meekins", "year": 1993 },
   { "id": 3, "name": "Artur Fishlee", "year": 1996 },
@@ -100,3 +100,5 @@ module.exports = [
   { "id": 99, "name": "Kennan Wratten", "year": 2009 },
   { "id": 100, "name": "Jecho Thompson", "year": 2002 }
 ]
+
+module.exports = users
