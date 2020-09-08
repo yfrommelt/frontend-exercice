@@ -16,7 +16,12 @@ router.get('/users', (req, res) => {
   return res.json(users.map(user => ({id: user.id, name: user.name})))
 });
 router.get('/avg', (req, res) => {
-  return res.json({ req })
+  return res.json(req.body)
+
+  const ids = req.body.ids
+  const years = users.filter(user => ids.indexOf(user.id) !== -1).map(user => user.year)
+  const avg = (years / years.length) * years.length
+  return res.json({ avg })
 });
 
 app.use(bodyParser.json());
