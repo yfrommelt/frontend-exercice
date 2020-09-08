@@ -4,6 +4,7 @@ const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
+import users from '../fake'
 
 const router = express.Router();
 router.get('/', (req, res) => {
@@ -11,8 +12,12 @@ router.get('/', (req, res) => {
   res.write('<h1>Hello from Express.js!</h1>');
   res.end();
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-router.post('/', (req, res) => res.json({ postBody: req.body }));
+router.get('/users', (req, res) => {
+  return res.json(users.map(user => ({id: user.id, name: user.name})))
+});
+router.get('/avg', (req, res) => {
+  return res.json({ req })
+});
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
