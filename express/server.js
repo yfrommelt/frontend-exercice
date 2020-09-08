@@ -4,7 +4,7 @@ const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
-import users from '../fake'
+const users = require('../fake');
 
 const router = express.Router();
 router.get('/', (req, res) => {
