@@ -13,14 +13,12 @@ router.get('/', (req, res) => {
   res.end();
 });
 router.get('/users', (req, res) => {
-  return res.json(users.map(user => ({id: user.id, name: user.name})))
+  return res.json(users.map(user => ({ id: user.id, name: user.name })))
 });
 router.get('/avg', (req, res) => {
-  return res.json(req.body)
-
-  const ids = req.body.ids
+  const { ids } = req.body
   const years = users.filter(user => ids.indexOf(user.id) !== -1).map(user => user.year)
-  const avg = (years / years.length) * years.length
+  const avg = years.reduce((p, c, _, a) => p + c / a.length, 0)
   return res.json({ avg })
 });
 
