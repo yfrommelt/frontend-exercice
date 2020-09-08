@@ -15,11 +15,18 @@ router.get('/', (req, res) => {
 router.get('/users', (req, res) => {
   return res.json(users.map(user => ({ id: user.id, name: user.name })))
 });
-router.get('/avg', (req, res) => {
-  const { ids } = req.body
+router.get('/average', (req, res) => {
+  const { ids, noerror } = req.body
+
+  if (!noerror) {
+    res.statusCode = 400
+    return res.json({error: `Un parametre "noerror": true doit être envoyé à l'API avec les ids des utilisateur. 
+    Prends en compte cette erreur et affiche la sur l'application quand elle survient (cas a codé en dur dans ton code).`})
+  }
+
   const years = users.filter(user => ids.indexOf(user.id) !== -1).map(user => user.year)
-  const avg = years.reduce((p, c, _, a) => p + c / a.length, 0)
-  return res.json({ avg })
+  const average = years.reduce((p, c, _, a) => p + c / a.length, 0)
+  return res.json({ average })
 });
 
 app.use(bodyParser.json());
