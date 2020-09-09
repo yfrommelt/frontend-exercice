@@ -98,7 +98,7 @@ const users = [
   { "id": 97, "name": "Mendie Shercliff", "year": 1987 },
   { "id": 98, "name": "Karalee Climpson", "year": 1999 },
   { "id": 99, "name": "Kennan Wratten", "year": 2009 },
-  { "id": 100, "name": "Jecho Thompson", "year": 2002 }
+  { "id": 100, "name": "Jecho Thompson", "year": null }
 ]
 
 module.exports = users
