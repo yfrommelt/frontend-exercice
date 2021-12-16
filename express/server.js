@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const users = require('../fake');
 
@@ -30,6 +31,8 @@ router.get('/average', (req, res) => {
   return res.json({ average })
 });
 
+app.options('*', cors())
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
