@@ -17,11 +17,9 @@ router.get('/users', (req, res) => {
   return res.json(users.map(user => ({ id: user.id, name: user.name })))
 });
 router.get('/average', (req, res) => {
-  const ids = req.query?.ids ?? []
+  const ids = req.query.ids || []
 
-  console.log(ids)
-
-  if (!ids?.length) {
+  if (!ids.length) {
     res.statusCode = 400
     return res.json({ error: `Impossible de calculer l'âge moyen`})
   }
